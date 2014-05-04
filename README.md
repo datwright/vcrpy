@@ -310,6 +310,21 @@ with my_vcr.use_cassette('test.yml'):
     # your http code here
 ```
 
+## Ignore requests
+
+If you would like to completely ignore certain requests, you can do it in a
+few ways:
+
+ * Set the `ignore_localhost` option equal to True.  This will not record any
+   requests sent to (or responses from) localhost, 127.0.0.1, or 0.0.0.0.
+ * Set the `ignore_hosts` configuration option to a list of hosts to ignore
+ * Add a `before_record` callback that returns None for requests you want to
+   ignore
+
+Requests that are ignored by VCR will not be saved in a cassette, nor played
+back from a cassette.  VCR will completely ignore those requests as if it
+didn't notice them at all, and they will continue to hit the server as if VCR
+were not there.
 
 ## Installation
 
